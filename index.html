@@ -1,168 +1,189 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My Portfolio | Andria Rezki</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body id="home">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ac9a9a">
-      <div class="container">
-        <a class="navbar-brand" href="#">Andria Rezki</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Andria Rezki · Notebook</title>
+<meta name="description" content="Andria's notebook: Linux servers, small web apps, monitoring and spreadsheets that behave. Pastel side of andriarezki.tech.">
+<meta property="og:title" content="Andria Rezki · Notebook">
+<meta property="og:description" content="I fix servers, build small web apps and make spreadsheets behave.">
+<meta property="og:image" content="https://andriarezki.github.io/img/mascot.jpg">
+<meta name="theme-color" content="#FFF8EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Pastel notebook: cream paper, dotted grid, hand-drawn doodles (SVG + displacement filter for a sketchy line). */
+:root{
+  --paper:#FFF8EE; --ink:#2E3A59; --soft:#5B6788;
+  --mint:#BFE9DB; --lav:#D9CCF5; --peach:#FFD6C2; --butter:#FFF1B8; --sky:#CDE7F7;
+  --mint-d:#4FA88C; --peach-d:#E0805C;
+  --hand:"Caveat",cursive; --body:"Nunito",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--body);overflow-x:hidden;
+  background-image:radial-gradient(#2E3A5914 1.4px,transparent 1.4px);background-size:26px 26px}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.sketch{filter:url(#rough)}
+.doodle{stroke:var(--ink);stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:#FFF8EEE6;backdrop-filter:blur(8px);border-bottom:2px dashed #2E3A5922}
+nav .wrap{display:flex;align-items:center;gap:18px;padding-block:12px}
+.brand{font:700 26px var(--hand);text-decoration:none}
+.brand span{background:var(--butter);padding:0 6px;border-radius:6px}
+nav .links{margin-left:auto;display:flex;gap:16px;font-weight:700;font-size:15px}
+nav .links a{text-decoration:none;color:var(--soft)}
+nav .links a:hover{color:var(--ink)}
+@media (max-width:600px){nav .links a:not(.hi-link){display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;padding:56px 0 30px}
+.hero>*{min-width:0}
+.hi{font:700 30px var(--hand);color:var(--peach-d);transform:rotate(-2deg);display:inline-block}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.08;margin:6px 0 16px;font-weight:900;letter-spacing:-.01em}
+.mark{position:relative;white-space:nowrap}
+.mark::after{content:"";position:absolute;left:-4px;right:-4px;bottom:4px;height:.38em;background:var(--mint);z-index:-1;border-radius:6px;transform:rotate(-1deg)}
+.hero p.lead{font-size:19px;color:var(--soft);max-width:46ch;margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-block;text-decoration:none;font-weight:800;padding:12px 22px;border:2.5px solid var(--ink);border-radius:14px;background:var(--butter);box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn.alt{background:#fff}
+.avatar{position:relative;justify-self:center;width:min(320px,80vw);aspect-ratio:1}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:3px solid var(--ink);background:var(--mint);position:relative;z-index:1}
+.avatar .blob{position:absolute;inset:-14px;border-radius:46% 54% 52% 48%/55% 45% 55% 45%;background:var(--lav);transform:rotate(8deg)}
+.avatar .note{position:absolute;z-index:2;right:-6px;bottom:18px;background:#fff;border:2.5px solid var(--ink);border-radius:14px;padding:4px 12px;font:700 22px var(--hand);transform:rotate(4deg)}
+.avatar svg{position:absolute;z-index:2}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-top:36px}.avatar{order:-1;width:220px}}
+
+/* sections */
+section{padding:44px 0}
+.h2{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:22px}
+.h2 h2{font-size:32px;font-weight:900;margin:0}
+.h2 small{font:700 24px var(--hand);color:var(--peach-d)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{border:2.5px solid var(--ink);border-radius:20px;padding:20px;box-shadow:5px 5px 0 var(--ink);background:#fff}
+.card:nth-child(4n+1){background:var(--mint)}.card:nth-child(4n+2){background:var(--lav)}
+.card:nth-child(4n+3){background:var(--peach)}.card:nth-child(4n+4){background:var(--butter)}
+.card svg{width:64px;height:64px;display:block;margin-bottom:6px}
+.card h3{margin:0 0 6px;font-size:20px;font-weight:900}
+.card p{margin:0;color:var(--ink);font-size:16px}
+
+.builds{display:grid;gap:16px}
+.build{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:16px 20px;text-decoration:none;transition:transform .15s}
+.build:hover{transform:rotate(-.4deg) translateY(-2px)}
+.build .num{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font:700 26px var(--hand);border:2.5px solid var(--ink)}
+.build:nth-child(4n+1) .num{background:var(--mint)}.build:nth-child(4n+2) .num{background:var(--lav)}
+.build:nth-child(4n+3) .num{background:var(--peach)}.build:nth-child(4n+4) .num{background:var(--butter)}
+.build h3{margin:0;font-size:18px;font-weight:900}
+.build p{margin:2px 0 0;color:var(--soft);font-size:15px}
+.build .go{font:700 22px var(--hand);color:var(--mint-d);white-space:nowrap}
+@media (max-width:560px){.build{grid-template-columns:auto 1fr}.build .go{display:none}}
+
+.now{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.sticky{padding:22px;border-radius:4px;box-shadow:0 10px 18px #2E3A5922;font-size:16px;position:relative}
+.sticky:nth-child(1){background:var(--butter);transform:rotate(-1.5deg)}
+.sticky:nth-child(2){background:var(--sky);transform:rotate(1deg)}
+.sticky:nth-child(3){background:var(--peach);transform:rotate(-.6deg)}
+.sticky b{font:700 26px var(--hand);display:block;margin-bottom:4px}
+.sticky::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;background:#ffffff99;transform:translateX(-50%) rotate(-3deg)}
+
+.say{background:#fff;border:2.5px solid var(--ink);border-radius:24px;padding:30px;box-shadow:6px 6px 0 var(--ink);text-align:center;position:relative}
+.say h2{font-size:30px;font-weight:900;margin:0 0 6px}
+.say p{color:var(--soft);margin:0 0 18px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.chips a{text-decoration:none;font-weight:800;font-size:15px;padding:8px 16px;border-radius:30px;border:2px solid var(--ink)}
+.chips a:nth-child(1){background:var(--mint)}.chips a:nth-child(2){background:var(--lav)}.chips a:nth-child(3){background:var(--peach)}
+.chips a:nth-child(4){background:var(--butter)}.chips a:nth-child(5){background:var(--sky)}
+footer{text-align:center;color:var(--soft);padding:36px 0 50px;font:700 22px var(--hand)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
+</svg>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span>andria</span>.notebook</a>
+  <div class="links"><a href="#do">what I do</a><a href="#built">built</a><a href="#now">now</a><a class="hi-link" href="#hello">say hi ✿</a></div>
+</div></nav>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <span class="hi">hi there, I'm Andria ✌︎</span>
+      <h1>I fix servers, build small web apps and make <span class="mark">spreadsheets behave</span>.</h1>
+      <p class="lead">IT person from Indonesia with a soft spot for automation. I like things that just keep running, so nobody has to think about them.</p>
+      <div class="btns"><a class="btn" href="#built">see what I've built</a><a class="btn alt" href="#hello">say hello</a></div>
+    </div>
+    <div class="avatar">
+      <div class="blob"></div>
+      <img src="img/mascot.jpg" alt="Cartoon of Andria with round glasses and a mint hoodie" width="320" height="320">
+      <svg class="sketch" style="left:-34px;top:6px" width="70" height="70" viewBox="0 0 70 70"><path class="doodle" d="M35 8l6 18 18 2-14 11 5 18-15-10-15 10 5-18L11 28l18-2z" fill="#FFF1B8"/></svg>
+      <svg class="sketch" style="right:-20px;top:-8px" width="80" height="50" viewBox="0 0 80 50"><path class="doodle" d="M18 40a12 12 0 0 1 2-24 16 16 0 0 1 30-4 12 12 0 0 1 14 14 8 8 0 0 1-2 14z" fill="#CDE7F7"/></svg>
+      <div class="note">sudo make coffee ☕</div>
+    </div>
+  </div>
+
+  <section id="do">
+    <div class="h2"><h2>What I do</h2><small>the fun part</small></div>
+    <div class="cards">
+      <div class="card">
+        <svg class="sketch" viewBox="0 0 64 64"><rect class="doodle" x="10" y="8" width="44" height="14" rx="3" fill="#fff"/><rect class="doodle" x="10" y="25" width="44" height="14" rx="3" fill="#fff"/><rect class="doodle" x="10" y="42" width="44" height="14" rx="3" fill="#fff"/><path class="doodle" d="M17 15h2M17 32h2M17 49h2M40 15h8M40 32h8M40 49h8"/></svg>
+        <h3>Linux &amp; VPS</h3><p>Fresh server to production: Nginx, free SSL, Docker, firewall and backups, the boring-safe way.</p>
       </div>
-    </nav>
-
-    <!-- Akhir navbar -->
-
-    <!-- Jumbotron -->
-    <section class="jumbotron text-center">
-      <img
-        src="img/1701232313462.jpg"
-        alt="Ändria Rezki"
-        width="250"
-        class="rounded-circle"
-      />
-      <h1 class="display-4">Andria Rezki M.Kom</h1>
-      <p class="lead">
-     ICT |Technical Architect |
-        Web Developer
-      </p>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,160L80,154.7C160,149,320,139,480,160C640,181,800,235,960,266.7C1120,299,1280,309,1360,314.7L1440,320L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
-    </section>
-    <!-- akhir jumbotron -->
-    <!-- my css -->
-    <link rel="stylesheet" href="style.css" />
-    <!-- icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <!-- akhir css -->
-    <!-- about -->
-    <section id="about">
-   <div class="container">
-    <div class="row text-center mb-3">
-        <div class="col">
-            <h2>About Me</h2>
-        </div>
+      <div class="card">
+        <svg class="sketch" viewBox="0 0 64 64"><rect class="doodle" x="10" y="12" width="44" height="30" rx="4" fill="#fff"/><path class="doodle" d="M4 50h56l-4 6H8z" fill="#fff"/><path class="doodle" d="M22 24l-5 5 5 5M42 24l5 5-5 5M35 21l-6 16"/></svg>
+        <h3>Small web apps</h3><p>Helpdesks, catalogs, admin panels and little tools in PHP or Node.js that do one job well.</p>
+      </div>
+      <div class="card">
+        <svg class="sketch" viewBox="0 0 64 64"><path class="doodle" d="M20 44V30a12 12 0 0 1 24 0v14l4 5H16z" fill="#fff"/><path class="doodle" d="M28 54a4 4 0 0 0 8 0M32 10v4M12 22l4 2M52 22l-4 2"/></svg>
+        <h3>Monitoring</h3><p>A ping on Telegram when something goes down, and a public status page so nobody has to ask.</p>
+      </div>
+      <div class="card">
+        <svg class="sketch" viewBox="0 0 64 64"><rect class="doodle" x="8" y="10" width="48" height="44" rx="4" fill="#fff"/><path class="doodle" d="M8 22h48M8 34h48M8 46h48M24 10v44M40 10v44"/><path class="doodle" d="M44 50l4-8 4 4" stroke="#E0805C"/></svg>
+        <h3>Excel &amp; Sheets</h3><p>Messy data in, tidy dashboard out. Formulas, dropdowns and charts that update themselves.</p>
+      </div>
     </div>
-    <div class="row row justify-content-center fs-5 text-center">
-        <div class="col-md-4">
-            <p> Precisionist, Perfectionist, Traditional One | Omega Ambivert</p>
-        </div>
-        <div class="col-md-4">
-            <p>Informatics Engineering, Information and Communications
-              Technology Engineer (ICT solution & Development), Data
-              Management Professional, Server administrator, DevOps engineer,
-              Data Engineer, Database management & development, Fullstack
-              developer</p>
-        </div>
+  </section>
+
+  <section id="built">
+    <div class="h2"><h2>Things I've built</h2><small>open source, poke around</small></div>
+    <div class="builds">
+      <a class="build" href="https://github.com/andriarezki/vps-hardening" target="_blank" rel="noopener"><span class="num">1</span><div><h3>vps-hardening</h3><p>One script to secure a fresh Ubuntu server: SSH keys only, firewall, fail2ban, auto updates.</p></div><span class="go">github →</span></a>
+      <a class="build" href="https://github.com/andriarezki/selfhosted-monitoring-stack" target="_blank" rel="noopener"><span class="num">2</span><div><h3>selfhosted-monitoring-stack</h3><p>Uptime Kuma + Caddy with Telegram alerts and a public status page, in one compose file.</p></div><span class="go">github →</span></a>
+      <a class="build" href="https://github.com/andriarezki/backup-monitor-telegram" target="_blank" rel="noopener"><span class="num">3</span><div><h3>backup-monitor-telegram</h3><p>Checks every backup job each night and sends one short message: all good, or what broke.</p></div><span class="go">github →</span></a>
+      <a class="build" href="https://andriarezki.tech" target="_blank" rel="noopener"><span class="num">4</span><div><h3>andriarezki.tech</h3><p>My main portfolio: the serious, dark-mode version of this page, plus a small digital shop.</p></div><span class="go">visit →</span></a>
     </div>
-   </div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#dac5c5" fill-opacity="1" d="M0,160L80,154.7C160,149,320,139,480,160C640,181,800,235,960,266.7C1120,299,1280,309,1360,314.7L1440,320L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
-    </section>
-    <!-- akhir about -->
-    <!-- Projects -->
-    <section id="projects">
-        <div class="container">
-            <div class="row text-center mb-3">
-                <div class="col">
-                    <h2>My Projects</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="img/projects/1.jpg" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                          <p class="card-text">Soon</p>
-                        </div>
-                      </div>
+  </section>
 
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="img/projects/1.jpg" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                          <p class="card-text">Soon</p>
-                        </div>
-                      </div>
+  <section id="now">
+    <div class="h2"><h2>Lately</h2><small>what's on my desk</small></div>
+    <div class="now">
+      <div class="sticky"><b>learning in public</b>Working through a DevOps roadmap, one small project at a time, and writing down the mistakes.</div>
+      <div class="sticky"><b>helping small shops</b>Getting local businesses online with simple websites and hosting I look after myself.</div>
+      <div class="sticky"><b>making IT funny</b>Posting light IT humour and tips on Instagram, because tech support needs more laughing.</div>
+    </div>
+  </section>
 
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="img/projects/1.jpg" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                          <p class="card-text">Soon.</p>
-                        </div>
-                      </div>
-
-                </div>
-            </div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,0L48,32C96,64,192,128,288,133.3C384,139,480,85,576,69.3C672,53,768,75,864,117.3C960,160,1056,224,1152,224C1248,224,1344,160,1392,128L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-    </section>
-    <!-- akhir project -->
-    <!-- contact -->
-    .<section id="contact">
-        <div class="container">
-            <div class="row text-start mb-3">
-                <div class="col">
-                    <h2>Contact Me</h2>
-                </div>
-            </div>  
-            <div class="row text-start">
-                <div class="col-md-8">
-                  
-                    <p class="justify-content-center"><i class="bi bi-envelope-at"> andriarezki@gmail.com </i>| <i class="bi bi-phone"> 081376434343</i></p>
-                
-                </div>
-            </div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ac9a9a" fill-opacity="1" d="M0,32L60,80C120,128,240,224,360,261.3C480,299,600,277,720,229.3C840,181,960,107,1080,85.3C1200,64,1320,96,1380,112L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
-    </section>
-    <!--  akhir contact-->
-    <!-- footer -->
-    <footer class="footer text-center pb-5" style="background-color: #ac9a9a">
-        <p>Created when i have<i class="bi bi-watch text-danger"></i> <a href="https://www.instagram.com/andriarezki/" class="fw-bold">Andria Rezki</a></p>
-    </footer>
-    <!-- akhir footer -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <section id="hello">
+    <div class="say">
+      <svg class="sketch" style="position:absolute;left:18px;top:-26px" width="60" height="60" viewBox="0 0 60 60"><path class="doodle" d="M30 52S8 38 8 22a11 11 0 0 1 22-4 11 11 0 0 1 22 4c0 16-22 30-22 30z" fill="#FFD6C2"/></svg>
+      <h2>Say hello</h2>
+      <p>Questions, ideas or a server that won't behave? I usually reply in the evening (GMT+7).</p>
+      <div class="chips">
+        <a href="mailto:andriarezki@gmail.com">email</a>
+        <a href="https://github.com/andriarezki" target="_blank" rel="noopener">github</a>
+        <a href="https://id.linkedin.com/in/andriarezki" target="_blank" rel="noopener">linkedin</a>
+        <a href="https://www.instagram.com/andriarezki/" target="_blank" rel="noopener">instagram</a>
+        <a href="https://andriarezki.tech" target="_blank" rel="noopener">andriarezki.tech</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>made with coffee &amp; pastel colours · © 2026 Andria Rezki</footer>
+</body>
 </html>
